@@ -22,6 +22,9 @@ function! bkup#backup(file) abort
     return
   endif
   let extension = fnamemodify(a:file, ':e')
+  if extension is# ''
+    let extension = fnamemodify(a:file, ':t')
+  endif
   let time = strftime('_%Y%m%d_%X')
   let to = s:Filepath.join(g:bkup#dir, from) . time . '.' . extension
   let todir = fnamemodify(to, ':h')
